@@ -1,0 +1,22 @@
+const express = require('express')
+const app = express()
+const mongoose = require('mongoose')
+const candidateRouter = require('./routers/candidateRouter')
+const compnayRouter = require('./routers/companyRouter')
+const skillsAPI_Router = require('./routers/skillsAPI_Router')
+const skillTestRouter = require('./routers/skillTestRouter')
+const universitiesAPI_Router = require('./routers/universitiesAPI_Router')
+const cors = require('cors')
+require('dotenv').config()
+
+mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.ualxa.gcp.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`,{ useNewUrlParser: true ,useFindAndModify:true,useUnifiedTopology: true},)
+
+app.use(cors())
+app.use(express.json())
+app.use('/university',universitiesAPI_Router)
+app.use('/candidate',candidateRouter)
+app.use('/company',compnayRouter)
+app.use('/skills',skillsAPI_Router)
+app.use('/skilltest',skillTestRouter)
+
+app.listen(process.env.PORT||8080)
