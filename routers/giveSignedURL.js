@@ -6,7 +6,7 @@ require('dotenv').config()
 
 const auth = async(req,res,next)=>{
     try{
-        const {_id} = req.body
+        const {_id} = decode(req.body.jwt)
         const company =  await companyModel.findById(_id) 
         const candidate = await candidateModel.findById(_id)
         if(company||candidate) next()
