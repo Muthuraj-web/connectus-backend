@@ -213,9 +213,11 @@ Router.post("/signup",async(req,res)=>{
         else if(user&&user.email===email){
             res.send({error:"Company with the email ID already exists"})
         }
+        else{
         const hashed = await bcrypt.hash(password,10)
         const newuser = await new companyModel({company,email,password:hashed}).save()
         res.send({jwt:jwt.sign({_id:newuser._id,company:newuser.company,email:newuser.email},"JWT_PRIVATE_KEY")})
+        }
     } 
     catch(err){
         res.send({error:err.message})
