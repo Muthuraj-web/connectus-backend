@@ -6,7 +6,7 @@ const compnayRouter = require('./routers/companyRouter')
 const skillsAPI_Router = require('./routers/skillsAPI_Router')
 const skillTestRouter = require('./routers/skillTestRouter')
 const universitiesAPI_Router = require('./routers/universitiesAPI_Router')
-const signedurl = require
+const signedurl = require('./routers/signedurl')
 const cors = require('cors')
 require('dotenv').config()
 
